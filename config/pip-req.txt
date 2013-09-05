@@ -1,0 +1,7 @@
+gevent
+flask
+flask-peewee
+flask-script
+
+# flask extensions
+Flask-DebugToolbar

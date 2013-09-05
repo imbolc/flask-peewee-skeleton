@@ -1,0 +1,3 @@
+*.py[co]
+/var
+/config/local.py

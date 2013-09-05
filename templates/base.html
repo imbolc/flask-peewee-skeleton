@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{{ config.BRAND }}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+
+    <!--[if lt IE 9]>
+      <script src="{{ url_for('static', filename='html5shiv.js') }}"></script>
+    <![endif]-->
+
+  </body>
+</html>

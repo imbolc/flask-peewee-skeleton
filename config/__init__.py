@@ -12,6 +12,7 @@ BRAND = 'Flask Peewee Skeleton'
 ENV_PATH = from_root('var/env')
 REQUIREMENTS_FNAME = from_root('config/pip-req.txt')
 DEPLOY_HOST = ''
+LOGGING = from_root('config/logging-dev.yaml')
 
 SECRET_KEY = 'secret'
 

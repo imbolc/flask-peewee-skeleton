@@ -1,4 +1,7 @@
+pyyaml
 gevent
+colorlog
+
 flask
 flask-peewee
 flask-script

@@ -1,0 +1,27 @@
+version: 1
+root:
+    level: DEBUG
+    handlers: [console]
+loggers:
+    gevent:
+        level: DEBUG
+        handlers: [console]
+        propagate: no
+    app:
+        level: DEBUG
+        handlers: [console]
+        propagate: yes
+    peewee:
+        level: DEBUG
+        handlers: [console]
+        propagate: no
+formatters:
+    colored:
+        (): colorlog.ColoredFormatter
+        format: '%(log_color)s%(name)-10s%(message)s'
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: colored
+        stream: ext://sys.stdout

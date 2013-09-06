@@ -13,8 +13,9 @@ BRAND = 'Flask Peewee Skeleton'
 # fabric
 ENV_PATH = from_root('var/env')
 REQUIREMENTS_FNAME = from_root('config/pip-req.txt')
-DEPLOY_HOST = ''
+DEPLOY_HOST = HOST
 
+ROOT = from_root('')
 LOGGING = from_root('config/logging-dev.yaml')
 
 SECRET_KEY = 'secret'

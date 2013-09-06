@@ -66,7 +66,7 @@ def configure_nginx():
     for var in ['HOST', 'IP', 'PORT']:
         assert var in app.config, 'You need to define config.%s' % var
     fname = '/etc/nginx/sites-enabled/%s' % app.config['HOST']
-    config = render_template('nginx.txt', ROOT=from_root(''), **app.config)
+    config = render_template('config/nginx.txt', **app.config)
     print config
     if prompt_bool('Save this config to the %s' % fname):
         with open(fname, 'w') as f:

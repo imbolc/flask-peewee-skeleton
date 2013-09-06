@@ -1,9 +1,12 @@
 #!var/env/bin/python
 import os
+from flask import render_template
 from flask.ext.script import Manager, prompt, prompt_bool
 
+from utils import from_root
 from app import app
 import models
+
 
 MODELS = ['User', 'Relationship']
 
@@ -56,6 +59,21 @@ def createadmin():
 @manager.command
 def secretkey():
     print 'Random secret key:', repr(os.urandom(24))
+
+
+@manager.command
+def configure_nginx():
+    for var in ['HOST', 'IP', 'PORT']:
+        assert var in app.config, 'You need to define config.%s' % var
+    fname = '/etc/nginx/sites-enabled/%s' % app.config['HOST']
+    config = render_template('nginx.txt', ROOT=from_root(''), **app.config)
+    print config
+    if prompt_bool('Save this config to the %s' % fname):
+        with open(fname, 'w') as f:
+            f.write(config)
+        print ('Saved. You can restart nginx with: \tsudo /etc/init.d/nginx '
+                'configtest && sudo /etc/init.d/nginx restart')
+
 
 
 if __name__ == "__main__":

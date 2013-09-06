@@ -6,12 +6,15 @@ from utils import from_root
 
 DEBUG = True
 PORT = 8000
+HOST = 'host.com'
+IP = '0.0.0.0'
 BRAND = 'Flask Peewee Skeleton'
 
 # fabric
 ENV_PATH = from_root('var/env')
 REQUIREMENTS_FNAME = from_root('config/pip-req.txt')
 DEPLOY_HOST = ''
+
 LOGGING = from_root('config/logging-dev.yaml')
 
 SECRET_KEY = 'secret'

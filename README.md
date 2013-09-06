@@ -5,6 +5,7 @@ Install
 -------
     sudo pip install virtualenv fabric
     fab buildenv
+    cp config/local.py.exapmle config/local.py
     ./manage.py init
     sudo ./manage.py configure_nginx
     sudo ./manage.py configure_runit

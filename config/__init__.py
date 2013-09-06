@@ -1,26 +1,29 @@
 # -*- coding: utf-8 -*-
 '''
-Development config. It may be overriden in config/prod.py for production.
+Production config. It may be overriden in config/local.py for development.
 '''
 from utils import from_root
 
-DEBUG = True
-PORT = 8000
-HOST = 'host.com'
-IP = '0.0.0.0'
+DEBUG = False
 BRAND = 'Flask Peewee Skeleton'
+
+# nginx
+IP = '0.0.0.0'
+HOST = 'host.com'
+PORT = 8000
 
 # fabric
 ENV_PATH = from_root('var/env')
 REQUIREMENTS_FNAME = from_root('config/pip-req.txt')
 DEPLOY_HOST = HOST
+DEPLOY_PATH = '~/flask-peewee-skeleton'
 
 # runit
 RUNIT_USER = 'imbolc'
 RUNIT_NAME = 'flask-peewee-skeleton'
 
 ROOT = from_root('')
-LOGGING = from_root('config/logging-dev.yaml')
+LOGGING = from_root('config/logging-prod.yaml')
 
 SECRET_KEY = 'secret'
 

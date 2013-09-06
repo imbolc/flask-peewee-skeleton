@@ -29,11 +29,11 @@ def upgrade(name):
 
 
 def pull():
-    api.local('hg pull ssh://%s/%s' % (config.DEPLOY_HOST, config.DEPLOY_PATH))
+    api.local('git pull ssh://%s/%s' % (config.DEPLOY_HOST, config.DEPLOY_PATH))
 
 
 def deploy_fix():
-    api.local("hg ci -A -m'little fix'")
+    api.local("git add -A && git commit -m'little fix'")
     api.local('fab deploy')
 
 
@@ -45,13 +45,11 @@ def deploy():
 
 def push():
     with settings(warn_only=True):
-        api.local('hg push')
-        api.local('hg push ssh://%s/%s' % (config.DEPLOY_HOST, config.DEPLOY_PATH))
-        with api.cd(config.DEPLOY_PATH):
-            api.run('hg up')
+        api.local('git push')
+        api.local('git push ssh://%s/%s' % (config.DEPLOY_HOST, config.DEPLOY_PATH))
 
 
 def log():
     with api.cd(config.DEPLOY_PATH):
-        api.run('tail -n50 -f %s' % config.LOG_FILE)
+        api.run('tail -n50 -f var/site.log')
 

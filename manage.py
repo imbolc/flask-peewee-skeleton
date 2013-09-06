@@ -1,9 +1,10 @@
 #!var/env/bin/python
 import os
+import stat
+
 from flask import render_template
 from flask.ext.script import Manager, prompt, prompt_bool
 
-from utils import from_root
 from app import app
 import models
 
@@ -61,10 +62,14 @@ def secretkey():
     print 'Random secret key:', repr(os.urandom(24))
 
 
+def config_must_contain(*var_names):
+    for var in var_names:
+        assert var in app.config, 'You need to define config.%s' % var
+
+
 @manager.command
 def configure_nginx():
-    for var in ['HOST', 'IP', 'PORT']:
-        assert var in app.config, 'You need to define config.%s' % var
+    config_must_contain('ROOT', 'HOST', 'IP', 'PORT')
     fname = '/etc/nginx/sites-enabled/%s' % app.config['HOST']
     config = render_template('config/nginx.txt', **app.config)
     print config
@@ -74,6 +79,22 @@ def configure_nginx():
         print ('Saved. You can restart nginx with: \n\tsudo /etc/init.d/nginx '
                 'configtest && sudo /etc/init.d/nginx restart')
 
+@manager.command
+def configure_runit():
+    config_must_contain('ROOT', 'RUNIT_USER', 'RUNIT_NAME')
+    fname = '/etc/service/%s/run' % app.config['RUNIT_NAME']
+    config = render_template('config/runit.sh', **app.config)
+    print config
+    if prompt_bool('Save this config to the %s' % fname):
+        try:
+            os.makedirs(os.path.dirname(fname))
+        except OSError:
+            pass
+        with open(fname, 'w') as f:
+            f.write(config)
+        st = os.stat(fname)
+        os.chmod(fname, st.st_mode | stat.S_IEXEC)
+        print 'Saved.'
 
 
 if __name__ == "__main__":

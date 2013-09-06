@@ -15,6 +15,10 @@ ENV_PATH = from_root('var/env')
 REQUIREMENTS_FNAME = from_root('config/pip-req.txt')
 DEPLOY_HOST = HOST
 
+# runit
+RUNIT_USER = 'imbolc'
+RUNIT_NAME = 'flask-peewee-skeleton'
+
 ROOT = from_root('')
 LOGGING = from_root('config/logging-dev.yaml')
 

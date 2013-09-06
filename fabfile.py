@@ -46,10 +46,10 @@ def deploy():
 def push():
     with settings(warn_only=True):
         api.local('git push')
-        api.local('git push ssh://%s/%s' % (config.DEPLOY_HOST, config.DEPLOY_PATH))
+        with api.cd(config.DEPLOY_PATH):
+            api.run('git pull')
 
 
 def log():
     with api.cd(config.DEPLOY_PATH):
         api.run('tail -n50 -f var/site.log')
-

@@ -34,3 +34,9 @@ DEBUG_TB_PANELS = (
     'flask_debugtoolbar.panels.logger.LoggingPanel',
     'flask_debugtoolbar.panels.profiler.ProfilerDebugPanel',
 )
+
+
+try:
+    from local import *
+except ImportError:
+    pass

@@ -71,7 +71,7 @@ def configure_nginx():
     if prompt_bool('Save this config to the %s' % fname):
         with open(fname, 'w') as f:
             f.write(config)
-        print ('Saved. You can restart nginx with: \tsudo /etc/init.d/nginx '
+        print ('Saved. You can restart nginx with: \n\tsudo /etc/init.d/nginx '
                 'configtest && sudo /etc/init.d/nginx restart')
 
 

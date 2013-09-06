@@ -18,6 +18,15 @@ Start production server
     ENV=config/prod.py ./main.py
 
 
+Install on production server
+----------------------------
+    sudo pip install virtualenv fabric
+    fab buildenv
+    ./manage.py init
+    sudo ./manage.py configure_nginx
+
+
+
 Technology stack
 ----------------
 - flask web framework

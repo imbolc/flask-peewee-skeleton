@@ -10,7 +10,6 @@ from utils._logging import LoggedFlask
 
 app = LoggedFlask(__name__)
 app.config.from_object('config')
-app.config.from_envvar('ENV', silent=True)
 
 # logging
 logging.config.dictConfig(yaml.load(open(app.config['LOGGING'])))

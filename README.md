@@ -14,6 +14,10 @@ Start server
 ------------
     ./main.py
 
+Deploy
+------
+    fab deploy
+
 
 Technology stack
 ----------------

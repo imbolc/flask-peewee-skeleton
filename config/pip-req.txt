@@ -1,5 +1,6 @@
 pyyaml
 gevent
+setproctitle
 colorlog
 
 flask
